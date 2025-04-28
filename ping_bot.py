@@ -35,6 +35,7 @@ def get_log_sheet():
 # 🔁 Проверка новых записей
 async def check_for_updates(context):
     try:
+        today = datetime.today().strftime("%Y-%m-%d")
         log_sheet = get_log_sheet()
         rows = log_sheet.get_all_values()[1:]  # пропускаем заголовки
         new_entries = []
@@ -45,7 +46,10 @@ async def check_for_updates(context):
 
             log_date, change_type, app_number, package_name = row
 
-            # Проверка на новый тип записи
+            # Фильтрация только по сегодняшней дате
+            if log_date != today:
+                continue
+
             if change_type == "Приложение вернулось в стор":
                 unique_key = f"{log_date}-{change_type}-{app_number}-{package_name}"
                 if unique_key not in known_log_entries:
@@ -86,4 +90,3 @@ if __name__ == "__main__":
     import nest_asyncio
     nest_asyncio.apply()
     asyncio.get_event_loop().run_until_complete(main())
-
