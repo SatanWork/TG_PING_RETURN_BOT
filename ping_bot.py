@@ -17,7 +17,7 @@ GOOGLE_CREDENTIALS = json.loads(os.getenv("GOOGLE_CREDENTIALS"))
 SPREADSHEET_ID = "1DpbYJ5f6zdhIl1zDtn6Z3aCHZRDFTaqhsCrkzNM9Iqo"
 
 # 👥 Список пользователей, которым можно отправлять уведомления
-ALLOWED_USERS = [929686990]
+ALLOWED_USERS = [929686990, 6066119769]
 
 # 🧠 Храним последние известные записи, чтобы избежать дублей
 known_log_entries = set()
